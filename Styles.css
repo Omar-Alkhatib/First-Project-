@@ -1,0 +1,64 @@
+
+:root {
+    --main-grey-color: rgb(243, 237, 237);
+    --main-gold-color: rgb(245, 237, 196); 
+    
+}
+
+
+div { 
+    background-color: var(--main-grey-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+#logo {
+    justify-content:flex-end;
+    
+}
+
+header {
+    font-size: 3rem;
+    color: darkgoldenrod;
+    text-decoration: underline crimson;
+    
+    
+}
+
+h1 {
+
+    background-color: var(--main-gold-color);
+    border-width: 20px;
+    border-style: solid;
+    border-color:  rgb(243, 237, 237);   
+    text-decoration-style: solid;
+    
+}
+
+ul {
+    padding: 20px;
+    background-color: var(--main-grey-color);
+    
+}
+
+li {
+    background-color: var(--main-gold-color);
+    border-style: groove;
+    border-width: 2px;
+    border-color: var(--main-grey-color);
+    height: 22px;
+    align-content: center;
+    flex-flow: row wrap;
+    list-style: none;
+
+    
+}
+
+.manipulationButton {
+    float: right;
+    justify-self: center;
+    
+    
+}
