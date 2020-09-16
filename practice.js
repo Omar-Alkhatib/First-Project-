@@ -1,17 +1,17 @@
-const body = document.querySelector("body");
-// let headerDiv = document.querySelector("div")
-// body.append(headerDiv);
-// headerDiv.className = "container";
-const header = document.createElement("h1");
-header.innerText="Inventory";
-// headerDiv.append(header);
 
-body.append(header);
+const section = document.getElementById("page");
+const inListDiv = document.getElementById("mainId")
+
+
+section.appendChild(inListDiv);
+
+
+
 
 const unOrderedList = document.createElement("ul");
-body.append(unOrderedList);
+inListDiv.append(unOrderedList);
 
-const inventoryArray = ["Toyota Hilux 2019", "Nissan GTR 2015", "Ford Mustang 2020"];
+const inventoryArray = ["Toyota Hilux 2018", "Nissan GTR 2017", "Ford Mustang 2019","Toyota Hilux 2019", "Nissan GTR 2015", "Ford Mustang 2020"];
 
 const deleteListItem = function() {
     console.log(this.parentElement);
@@ -74,7 +74,7 @@ const renderList = function(inventoryArray) {
         return unOrderedList;   
 };
 
-body.append(renderList(inventoryArray));
+inListDiv.append(renderList(inventoryArray));
 
 
 
@@ -116,12 +116,12 @@ const addToList = function(inpValue) {
 
 
 const inputText = document.createElement("input");
-body.append(inputText);
+inListDiv.append(inputText);
 
 
 const button = document.createElement("button");
 button.innerText = "Add to inventory"
-body.append(button);
+inListDiv.append(button);
 
 button.addEventListener("click", function () {addToList(inputText.value)})
 
