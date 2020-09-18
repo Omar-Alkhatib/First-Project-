@@ -13,7 +13,7 @@
                          "nav  main"
                          "nav  foot";
     grid-template-rows: 6rem 1fr 30px;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 25rem 1fr;
     gap: 1rem;
   }
   
@@ -70,4 +70,20 @@
     float: right;
     justify-self: center;
     
+}
+
+#nav-section{
+  display: flex;
+  justify-content: left;
+  /* flex-direction: column; */
+  
+}
+
+#inputList {
+    list-style: none;
+
+}
+
+.inputSpec {
+  float: right;
 }
