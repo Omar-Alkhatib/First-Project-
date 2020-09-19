@@ -74,8 +74,8 @@
 
 #nav-section{
   display: flex;
-  justify-content: left;
-  /* flex-direction: column; */
+  flex-direction: column;
+  align-items: flex-start;
   
 }
 
@@ -86,4 +86,18 @@
 
 .inputSpec {
   float: right;
+}
+
+#get_info {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+#remove {
+
+list-style: none;
+
 }

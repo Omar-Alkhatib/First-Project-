@@ -30,64 +30,156 @@ const deleteListItem = function() {
     unOrderedList.removeChild(this.parentElement)
 }
 
-const updateListItem = function () {
-    let updatedItem = prompt("Enter here to update this inventory item then click OK");
-    if ((updatedItem !== null) && (updatedItem !== "")) {
+// const updateListItem = function () {
+//     let updatedItem = prompt("Enter here to update this inventory item then click OK");
+//     if ((updatedItem !== null) && (updatedItem !== "")) {
         
-            console.log(this.parentElement);
-            // addToList(updatedItem)
-        let newListItem = document.createElement("li");
-        // newListItem.innerText = updatedItem;
-        let a = document.createElement('a');
-        
-        newListItem.appendChild(a);
-        a.innerText = updatedItem
-        a.href = "http://google.com";
-
-        let newButton = document.createElement("button")
-        newButton.innerText = "Delete"
-        let updateButton = document.createElement("button")
-        updateButton.innerText = "Update"
-        newListItem.appendChild(newButton)
-        newListItem.appendChild(updateButton)
-        newButton.className = "manipulationButton";
-        updateButton.className = "manipulationButton";
-        newButton.addEventListener("click", deleteListItem)
-        updateButton.addEventListener("click", updateListItem)
-        unOrderedList.replaceChild(newListItem,this.parentElement)
-      
-
-    }
-}
-
-// const renderList = function(inventoryArray) {
-
-//     for (let i = 0; i< inventoryArray.length; i++) {
-//         let listItem = document.createElement("li");
-//         // listItem.innerText = inventoryArray[i];
+//             console.log(this.parentElement);
+//             // addToList(updatedItem)
+//         let newListItem = document.createElement("li");
+//         // newListItem.innerText = updatedItem;
 //         let a = document.createElement('a');
-
-//         a.innerText = inventoryArray[i].getSummary();
+        
+//         newListItem.appendChild(a);
+//         a.innerText = updatedItem
 //         a.href = "http://google.com";
-//         listItem.append(a);
 
 //         let newButton = document.createElement("button")
 //         newButton.innerText = "Delete"
 //         let updateButton = document.createElement("button")
 //         updateButton.innerText = "Update"
-//         listItem.appendChild(newButton)
-//         listItem.appendChild(updateButton)
+//         newListItem.appendChild(newButton)
+//         newListItem.appendChild(updateButton)
 //         newButton.className = "manipulationButton";
 //         updateButton.className = "manipulationButton";
 //         newButton.addEventListener("click", deleteListItem)
 //         updateButton.addEventListener("click", updateListItem)
-//         unOrderedList.appendChild(listItem);
+//         unOrderedList.replaceChild(newListItem,this.parentElement)
+     
+
 //     }
-//         return unOrderedList;   
-// };
+// }
 
-// inListDiv.append(renderList(inventoryArray));
 
+const replaceListItem = function (object, parent, input_4, input_5, input_6, input_7){
+
+    if ((input_4.value !== null) && (input_4.value !== "")) {
+        object.year = input_4;
+    }
+
+    if ((input_5.value !== null) && (input_5.value !== "")) {
+        object.color = input_5;
+    }
+
+    if ((input_6.value !== null) && (input_6.value !== "")) {
+        object.odometer = input_6;
+    }
+
+    if ((input_7.value !== null) && (input_7.value !== "")) {
+        object.generalCondition = input_7;
+    }
+
+    
+
+    let newListItem = document.createElement("li");
+    // newListItem.innerText = updatedItem;
+    let a = document.createElement('a');
+    
+    newListItem.appendChild(a);
+    a.innerText = object.getSummary()
+    console.log("this is summary: " + object.getSummary())
+    a.href = "http://google.com";
+
+    let newButton = document.createElement("button")
+    newButton.innerText = "Delete"
+    let updateButton = document.createElement("button")
+    updateButton.innerText = "Update"
+    newListItem.appendChild(newButton)
+    newListItem.appendChild(updateButton)
+    newButton.className = "manipulationButton";
+    updateButton.className = "manipulationButton";
+    newButton.addEventListener("click", deleteListItem)
+    updateButton.addEventListener("click", function() {updateListItem_1(object,this.parentElement)})
+    unOrderedList.replaceChild(newListItem, parent)
+
+    const tempInfoList = document.getElementById("remove")
+    tempInfoList.remove();
+      
+  
+}
+
+const updateListItem_1 = function(object, parent) {
+            
+            console.log(parent);
+            console.log(object.getInformation())
+            // addToList(updatedItem)
+
+    const footerForList = document.getElementById("get_info");
+
+    const tempInfoList = document.createElement("ul");
+    tempInfoList.id = "remove";
+
+    footerForList.appendChild(tempInfoList);
+    
+    
+    let listItem_1 = document.createElement("li");
+    listItem_1.innerText = `VIN (Serial Number) ${object.serialNumber}`;
+    
+    
+    
+    let listItem_2 = document.createElement("li");
+    listItem_2.innerText = `Manufacturer: ${object.manufacturer}`
+      
+        
+    let listItem_3 = document.createElement("li");
+    listItem_3.innerText = `Model: ${object.model}`;
+    
+
+    let input_4 = document.createElement("input");
+    let listItem_4 = document.createElement("li");
+    listItem_4.innerText = `Year: ${object.year} to:`
+    input_4.className = "inputSpec";
+
+    let input_5 = document.createElement("input");
+    let listItem_5 = document.createElement("li");
+    listItem_5.innerText = `Color: ${object.color} to:`
+    input_5.className = "inputSpec";
+
+    let input_6 = document.createElement("input");
+    let listItem_6 = document.createElement("li");
+    listItem_6.innerText = `Odo reading ${object.odometer} to:`
+    input_6.className = "inputSpec";
+
+    let input_7 = document.createElement("input");
+    let listItem_7 = document.createElement("li");
+    listItem_7.innerText = `Condition: ${object.generalCondition} to:`
+    input_7.className = "inputSpec";
+
+    tempInfoList.append(listItem_1);
+    tempInfoList.append(listItem_2);
+    tempInfoList.append(listItem_3);
+    tempInfoList.append(listItem_4);
+    tempInfoList.append(listItem_5);
+    tempInfoList.append(listItem_6);
+    tempInfoList.append(listItem_7);
+
+    
+    listItem_4.appendChild(input_4);
+    listItem_5.appendChild(input_5);
+    listItem_6.appendChild(input_6);
+    listItem_7.appendChild(input_7);
+   
+   
+    let upDateVehBut = document.createElement("button");
+    upDateVehBut.innerText = "UPDATE VEHICLE";
+    tempInfoList.append(upDateVehBut);
+
+    
+    upDateVehBut.addEventListener("click", function(){replaceListItem(object, parent, input_4.value, input_5.value, input_6.value, input_7.value)})
+
+}
+
+        
 
 
 const addToList = function(inpObject) {
@@ -115,17 +207,13 @@ const addToList = function(inpObject) {
         newButton.className = "manipulationButton";
         updateButton.className = "manipulationButton";
         newButton.addEventListener("click", deleteListItem)
-        updateButton.addEventListener("click", updateListItem)
+        updateButton.addEventListener("click", function() {updateListItem_1(inpObject, this.parentElement)})
         // body.append(renderList(inventoryArray.slice(inventoryArray.length-1)));
         unOrderedList.appendChild(newListItem);
         // unOrderedList.appendChild(inpValue);
     }
     
 };
-
-
-
-
 
 // const inputText = document.createElement("input");
 // inListDiv.append(inputText);
@@ -137,19 +225,17 @@ const addToList = function(inpObject) {
 
 
 
-
-
-const createInventoryItem = function(serialNumber, manufacturer, model, year, color, odometer, generalCondition) {
+const createInventoryItem = function(vehIdenNumber, vehMake, vehModel, vehYear, vehColor, vehMilage, vehCondition) {
 
     const vehicle = {};
   
-    vehicle.vehIdenNumber = serialNumber
-    vehicle.vehMake = manufacturer;
-    vehicle.vehModel = model;
-    vehicle.vehYear = year;
-    vehicle.vehColor = color;
-    vehicle.vehMilage = odometer;
-    vehicle.vehCondition = generalCondition; 
+    vehicle.serialNumber = vehIdenNumber
+    vehicle.manufacturer = vehMake;
+    vehicle.model = vehModel;
+    vehicle.year = vehYear;
+    vehicle.color = vehColor;
+    vehicle.odometer= vehMilage;
+    vehicle.generalCondition = vehCondition; 
   
     vehicle.changeColor = changeColor;
     vehicle.changeOdometer = changeOdometer;
@@ -163,38 +249,38 @@ const createInventoryItem = function(serialNumber, manufacturer, model, year, co
   
    
     const changeColor = function (newColor) {
-            this.vehColor = newColor;
-            return this.vehColor;
+            this.color = newColor;
+            return this.color;
         }; 
     
     const changeOdometer = function(newOdometer){
-            this.vehMilage = newOdometer;
-            return this.vehMilage
+            this.odometer = newOdometer;
+            return this.odometer
         };
   
     const changeYear = function (newYear) {
-            this.vehYear = newYear;
-            return this.vehYear
+            this.year = newYear;
+            return this.year
         };
   
     const changeComments = function (newComment){
-            this.vehCondition = newComment;
-            return this.vehCondition
+            this.generalCondition = newComment;
+            return this.generalCondition
         };
         
     const getInformation = function(){
-            return `VIN :                ${this.vehIdenNumber}
-                    Manufacturer:        ${this.vehMake}
-                    Model:               ${this.vehModel}
-                    Year of Manufacture: ${this.vehYear}
-                    Color:               ${this.vehColor}
-                    Milage:              ${this.vehMilage}
-                    General Condition:   ${this.vehCondition}`
+            return `VIN :                ${this.serialNumber}
+                    Manufacturer:        ${this.manufacturer}
+                    Model:               ${this.model}
+                    Year of Manufacture: ${this.year}
+                    Color:               ${this.color}
+                    Milage:              ${this.odometer}
+                    General Condition:   ${this.generalCondition}`
         };
   
     const getSummary = function(){
           //  console.log(`${this.vehMake} ${this.vehModel} ${this.vehYear}`)
-          return `${this.vehMake} ${this.vehModel} ${this.vehYear}`
+          return `${this.manufacturer} ${this.model} ${this.year}`
         };
   
         // a function that creates the new vehicle object and adds it to the inventory array:
@@ -278,6 +364,8 @@ addVehicleInput();
 
 // button.addEventListener("click", addVehicle)
 
+//  A function the creates a vehicle object that can be rendered on screen from an input object:
+
 const createRenderObject = function (object){
 const renderObject = createInventoryItem(object.serialNumber, object.manufacturer, object.model, object.year, object.color, object.odometer, object.generalCondition)
 return renderObject;
@@ -290,7 +378,8 @@ const renderList = function(inventoryArray) {
         // listItem.innerText = inventoryArray[i];
         let a = document.createElement('a');
 
-        a.innerText = createRenderObject(inventoryArray[i]).getSummary();
+        let renderedObject = createRenderObject(inventoryArray[i]);
+        a.innerText = renderedObject.getSummary();
         a.href = "http://google.com";
         listItem.append(a);
 
@@ -300,11 +389,12 @@ const renderList = function(inventoryArray) {
         updateButton.innerText = "Update"
         listItem.appendChild(newButton)
         listItem.appendChild(updateButton)
+        unOrderedList.appendChild(listItem);
         newButton.className = "manipulationButton";
         updateButton.className = "manipulationButton";
         newButton.addEventListener("click", deleteListItem)
-        updateButton.addEventListener("click", updateListItem)
-        unOrderedList.appendChild(listItem);
+        updateButton.addEventListener("click", function(){updateListItem_1(renderedObject, this.parentElement)})
+        // unOrderedList.appendChild(listItem);
     }
         return unOrderedList;   
 };
