@@ -63,20 +63,21 @@ const deleteListItem = function() {
 
 const replaceListItem = function (object, parent, input_4, input_5, input_6, input_7){
 
-    if ((input_4.value !== null) && (input_4.value !== "")) {
-        object.year = input_4;
+    if (input_4.value !== "") {
+        object.changeYear(input_4);
+        console.log(object.changeYear(input_4))
     }
 
-    if ((input_5.value !== null) && (input_5.value !== "")) {
-        object.color = input_5;
+    if (input_5.value !== "") {
+        object.changeColor(input_5);
     }
 
-    if ((input_6.value !== null) && (input_6.value !== "")) {
-        object.odometer = input_6;
+    if (input_6.value !== "") {
+        object.changeOdometer(input_6);
     }
 
-    if ((input_7.value !== null) && (input_7.value !== "")) {
-        object.generalCondition = input_7;
+    if (input_7.value !== "") {
+        object.changeComments(input_7);
     }
 
     
@@ -249,23 +250,31 @@ const createInventoryItem = function(vehIdenNumber, vehMake, vehModel, vehYear, 
   
    
     const changeColor = function (newColor) {
+        if (newColor !== ""){   
             this.color = newColor;
-            return this.color;
+            // return this.color;
+        }
         }; 
     
     const changeOdometer = function(newOdometer){
+        if (newOdometer !== "") {
             this.odometer = newOdometer;
-            return this.odometer
+            // return this.odometer
+        }
         };
   
     const changeYear = function (newYear) {
+        if (newYear !== "") {
             this.year = newYear;
-            return this.year
+            // return this.year
+        }
         };
   
     const changeComments = function (newComment){
+        if (newComment !== "") {
             this.generalCondition = newComment;
-            return this.generalCondition
+            // return this.generalCondition
+        }
         };
         
     const getInformation = function(){
